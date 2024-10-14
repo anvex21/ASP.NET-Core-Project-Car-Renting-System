@@ -185,6 +185,7 @@
             TempData[GlobalMessageKey] = $"You car was edited{(this.User.IsAdmin() ? string.Empty : " and is awaiting for approval")}!";
 
             return RedirectToAction(nameof(Details), new { id, information = car.GetInformation() });
+
         }
     }
 }

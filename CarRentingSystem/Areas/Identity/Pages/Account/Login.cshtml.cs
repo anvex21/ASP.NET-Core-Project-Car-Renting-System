@@ -14,7 +14,7 @@
     {
         private readonly SignInManager<User> signInManager;
 
-        public LoginModel(SignInManager<User> signInManager) 
+        public LoginModel(SignInManager<User> signInManager)
             => this.signInManager = signInManager;
 
         [BindProperty]
@@ -28,8 +28,8 @@
         public class InputModel
         {
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            //[EmailAddress]
+            public string UserName { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
@@ -59,8 +59,8 @@
 
             if (ModelState.IsValid)
             {
-                var result = await this.signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                
+                var result = await this.signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
                     return LocalRedirect(returnUrl);
@@ -73,7 +73,7 @@
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    
+
                     return Page();
                 }
             }

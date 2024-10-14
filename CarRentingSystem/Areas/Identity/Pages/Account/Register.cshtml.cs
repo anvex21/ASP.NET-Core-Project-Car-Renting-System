@@ -35,12 +35,26 @@
         public class InputModel
         {
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
+
+
+            //[Required]
+            //[EmailAddress]
+            //public string Email { get; set; }
 
             [Display(Name = "Full Name")]
             [StringLength(FullNameMaxLength, MinimumLength = FullNameMinLength)]
             public string FullName { get; set; }
+
+            [Display(Name = "Phone number")]
+            [StringLength(10, MinimumLength = 10, ErrorMessage = "The phone number should be exactly 10 digits!")]
+            public string PhoneNumber { get; set; }
+
+            [Remote("IsUniqueEgn", ErrorMessage = "This EGN already exists")]
+            [Display(Name = "EGN")]
+            [StringLength(10, MinimumLength = 10, ErrorMessage = "The EGN should be exactly 10 digits!")]
+            public string EGN { get; set; }
 
             [Required]
             [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength)]
@@ -66,9 +80,11 @@
             {
                 var user = new User
                 {
-                    UserName = Input.Email,
-                    Email = Input.Email,
-                    FullName = Input.FullName
+                    UserName = Input.UserName,
+                    //Email = Input.Email,
+                    FullName = Input.FullName,
+                    PhoneNumber = Input.PhoneNumber,
+                    EGN = Input.EGN
                 };
 
                 var result = await this.userManager.CreateAsync(user, Input.Password);

@@ -1,4 +1,6 @@
-﻿namespace CarRentingSystem.Data
+﻿using Microsoft.EntityFrameworkCore;
+using CarRentingSystem.Data.Models;
+namespace CarRentingSystem.Data
 {
     using CarRentingSystem.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -10,6 +12,8 @@
             : base(options)
         {
         }
+
+        public DbSet<Rental> Rentals { get; init; }
 
         public DbSet<Car> Cars { get; init; }
 
@@ -42,5 +46,7 @@
 
             base.OnModelCreating(builder);
         }
+
+        public DbSet<CarRentingSystem.Data.Models.Rental> Rental { get; set; }
     }
 }

@@ -14,11 +14,13 @@
         {
             var totalCars = this.data.Cars.Count(c => c.IsPublic);
             var totalUsers = this.data.Users.Count();
+            var totalRentals = this.data.Rentals.Count();
 
             return new StatisticsServiceModel
             {
                 TotalCars = totalCars,
-                TotalUsers = totalUsers
+                TotalUsers = totalUsers,
+                TotalRentals = totalRentals
             };
         }
     }
